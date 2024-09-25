@@ -30,9 +30,9 @@ This project is a Cold Email Generation tool that leverages Langchain, GROQ, and
 
 ## Tech Stack
 
-Langchain
-GROQ Model
-Llama Model
-Python
-Streamlit
+- Langchain
+- GROQ Model
+- Llama Model
+- Python
+- Streamlit
 
