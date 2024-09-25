@@ -40,22 +40,22 @@ class Chain:
             raise OutputParserException("Context too big. Unable to parse jobs")
         return res if isinstance(res,list) else [res]
     
-    def write_email(self, job, links):
+    def write_email(self, job, links, name_input, your_summary):
         prompt_email = PromptTemplate.from_template(
             """
             ### JOB DESCRIPTION:
             {job_description}
             ### INSTRUCTION:
-            You are Umed, a final year student pursuing BTech in Artificial Intelligence and Data Science, you are proficient in python and have developed various projects using machine learning, NLP, data analysis and visualizations.
+            You are {name_input}, Your profile summary is {your_summary}.
             Your job is to write a cold email to the client regarding the job mentioned above describing the capability in fulfiling their needs.
             Also add the most relevant portfolio links from the following links {link_list}
-            Remember you are Umed
+            Remember you are {name_input}
             Do not provide a preamble
             ### EMAIL (NO PREAMBLE)
             """
         )
 
         chain_email = prompt_email | self.llm
-        res = chain_email.invoke({"job_description":str(job), "link_list":links})
+        res = chain_email.invoke({"job_description":str(job), "link_list":links, "name_input":name_input,"your_summary":your_summary })
         return res.content 
     
